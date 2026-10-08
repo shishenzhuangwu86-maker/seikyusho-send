@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>請求書 まとめ送信</title>
+<style>
+  :root { --bg:#f4f6f9; --text:#1f2937; --muted:#6b7280; --accent:#2563eb; --line:#e5e7eb; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif; }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 16px; background:#fff; border-bottom:1px solid var(--line); }
+  .top h1 { font-size:16px; margin:0; }
+  .top a { font-size:13px; color:var(--accent); text-decoration:none; white-space:nowrap; }
+  .frame { position:relative; height:calc(100% - 45px); }
+  iframe { width:100%; height:100%; border:0; background:var(--bg); }
+  .hint { position:absolute; left:0; right:0; bottom:0; padding:10px 16px; font-size:13px; color:var(--muted); background:rgba(244,246,249,.95); border-top:1px solid var(--line); display:none; }
+  .hint a { color:var(--accent); }
+  .hint.show { display:block; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1>請求書 まとめ送信</h1>
+    <a id="open" href="#" target="_blank" rel="noopener">画面が表示されないときは別タブで開く ↗</a>
+  </div>
+  <div class="frame">
+    <iframe id="app" title="請求書 まとめ送信" allow="clipboard-write"></iframe>
+    <div class="hint" id="hint">画面が真っ白のままの場合は、ブラウザの設定で埋め込み表示がブロックされています。<a id="open2" href="#" target="_blank" rel="noopener">こちらから別タブで開いてください</a>（Googleアカウントでのログインが必要です）。</div>
+  </div>
+<script>
+  var APP = 'https://script.google.com/macros/s/AKfycby51fGIDUa2XfrInk4ETUdgcQ-ABeFTn3RX5q34AJe_eNCyDRI5vdin8PDgQo1ly6M-lg/exec';
+  document.getElementById('open').href = APP;
+  document.getElementById('open2').href = APP;
+  var f = document.getElementById('app');
+  f.src = APP + '?embed=1&t=' + Date.now();
+  // 8秒たってもユーザーが操作していない場合はヒントを出す(表示できているかは判定できないため案内のみ)
+  setTimeout(function () { document.getElementById('hint').classList.add('show'); }, 8000);
+</script>
+</body>
+</html>
